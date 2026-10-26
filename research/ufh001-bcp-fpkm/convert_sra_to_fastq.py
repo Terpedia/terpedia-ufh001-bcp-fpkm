@@ -53,6 +53,10 @@ def main():
                 or existing.get("control_duplicate_of") != row["control_duplicate_of"]
                 or existing.get("sra_md5") != row["sra_md5"]
                 or existing.get("read_count") != int(row["expected_reads"])
+                or not isinstance(existing.get("read_length_min"), int)
+                or not isinstance(existing.get("read_length_max"), int)
+                or existing["read_length_min"] < 1
+                or existing["read_length_max"] < existing["read_length_min"]
                 or existing.get("fastq_bytes") != output.stat().st_size
                 or existing.get("fastq_sha256") != sha256_file(output)):
                 raise ValueError(f"Existing FASTQ differs from its conversion receipt: {output}")
@@ -70,9 +74,14 @@ def main():
             raw = temporary / f"{accession}.fastq"
             if not raw.is_file():
                 raise ValueError(f"fasterq-dump did not create a single-end FASTQ for {accession}")
-            lines = int(subprocess.check_output(["wc", "-l", str(raw)], text=True).split()[0])
-            if lines != int(row["expected_reads"]) * 4:
-                raise ValueError(f"FASTQ record count differs from ENA run metadata for {accession}: {lines // 4}")
+            summary = subprocess.check_output([
+                "awk",
+                'NR%4==2 {n=length($0); if (min==0 || n<min) min=n; if (n>max) max=n} END {if (NR%4!=0) exit 2; printf "%.0f %d %d\\n", NR/4, min, max}',
+                str(raw),
+            ], text=True).split()
+            read_count, read_length_min, read_length_max = map(int, summary)
+            if read_count != int(row["expected_reads"]) or read_length_min < 1:
+                raise ValueError(f"FASTQ record count or length differs from ENA run metadata for {accession}: {read_count}")
             partial = output.with_name(output.name + ".partial")
             with raw.open("rb") as source, partial.open("wb") as encoded:
                 with gzip.GzipFile(filename="", mode="wb", fileobj=encoded, mtime=0, compresslevel=6) as compressed:
@@ -83,7 +92,8 @@ def main():
             "run_accession": accession, "sra_md5": row["sra_md5"],
             "control_duplicate_of": row["control_duplicate_of"],
             "fastq_bytes": output.stat().st_size, "fastq_sha256": sha256_file(output),
-            "read_count": int(row["expected_reads"]),
+            "read_count": read_count, "read_length_min": read_length_min,
+            "read_length_max": read_length_max,
         }
         sidecar.write_text(json.dumps(converted, indent=2) + "\n")
         results.append(converted)

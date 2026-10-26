@@ -4,6 +4,8 @@ This forkable project analyzes the processed FPKM matrix deposited with [GEO GSE
 
 The nine bulk RNA-seq libraries are UFH-001 cells under 1% oxygen for 16 hours, with three DMSO controls and three libraries at each of 20 µM and 200 µM β-caryophyllene. The three controls are reused from [GSE123856](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE123856); they are not an independent cohort. The notebook reports sample quality, correlations, pseudocount-sensitive mean-FPKM ratios, and predeclared cholesterol and signaling markers. It does not estimate differential expression or pathway significance.
 
+The [raw-run manifest](research/ufh001-bcp-fpkm/raw_run_manifest.tsv) maps all nine libraries to ENA single-end FASTQs with source-reported sizes and MD5 values. Those reads have not been downloaded or analyzed in this project. The three reused control libraries remain the same biological samples as in GSE123856.
+
 At 200 µM, HMGCR and several cholesterol-associated transcript means are higher than vehicle. This is a processed-matrix observation that agrees in direction with a [source article](https://pmc.ncbi.nlm.nih.gov/articles/PMC8561761/); it does not establish increased cholesterol flux or direct binding of β-caryophyllene to HMGCR. The [HepG2 audit](https://github.com/Terpedia/terpedia-hepg2-bcp-rsem) differs in cell type, oxygen, dose, time, vehicle, and quantification. Its PGF pattern therefore cannot be called biologically replicated here.
 
 ## Reproduce

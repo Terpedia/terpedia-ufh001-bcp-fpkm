@@ -6,6 +6,8 @@ The nine bulk RNA-seq libraries are UFH-001 cells under 1% oxygen for 16 hours, 
 
 The [ENA raw-run manifest](research/ufh001-bcp-fpkm/raw_run_manifest.tsv) maps all nine libraries to single-end FASTQs, and the [NCBI SRA manifest](research/ufh001-bcp-fpkm/sra_run_manifest.tsv) pins the normalized SRA archives and Data Locator MD5 values for faster retrieval. Those reads have not been downloaded or analyzed in this project. The three reused control libraries remain the same biological samples as in GSE123856.
 
+An [unexecuted raw-count notebook](notebooks/terputer-ufh001-bcp-raw-counts.ipynb) now specifies QC and separate PyDESeq2 contrasts for the two BCP doses against their shared DMSO controls. Its [dependency lock](requirements-raw-counts.lock.txt) describes the analysis environment. The existing white paper still reports only the deposited FPKM audit; the raw-count notebook is a method draft until the reads, mapping QC, model outputs, and execution receipt exist.
+
 At 200 µM, HMGCR and several cholesterol-associated transcript means are higher than vehicle. This is a processed-matrix observation that agrees in direction with a [source article](https://pmc.ncbi.nlm.nih.gov/articles/PMC8561761/); it does not establish increased cholesterol flux or direct binding of β-caryophyllene to HMGCR. The [HepG2 audit](https://github.com/Terpedia/terpedia-hepg2-bcp-rsem) differs in cell type, oxygen, dose, time, vehicle, and quantification. Its PGF pattern therefore cannot be called biologically replicated here.
 
 ## Reproduce

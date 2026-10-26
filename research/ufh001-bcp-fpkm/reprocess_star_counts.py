@@ -49,17 +49,17 @@ def reference_files():
 
 
 def build_index(fasta, gtf, overhang):
-    index = DATA / f"star_index_gencode_v48_overhang{overhang}"
+    index = DATA / f"star_index_gencode_v48_sparse8_overhang{overhang}"
     if (index / "genomeParameters.txt").is_file() and (index / "Genome").is_file():
         return index
     index.parent.mkdir(parents=True, exist_ok=True)
     temporary = Path(tempfile.mkdtemp(prefix="star-index-", dir=index.parent))
     command = [
-        "STAR", "--runMode", "genomeGenerate", "--runThreadN", "8",
+        "STAR", "--runMode", "genomeGenerate", "--runThreadN", "2",
         "--genomeDir", str(temporary), "--genomeFastaFiles", str(fasta),
         "--sjdbGTFfile", str(gtf), "--sjdbOverhang", str(overhang),
-        "--genomeSAsparseD", "3", "--genomeSAindexNbases", "12",
-        "--limitGenomeGenerateRAM", "18000000000",
+        "--genomeSAsparseD", "8", "--genomeSAindexNbases", "12",
+        "--limitGenomeGenerateRAM", "12000000000",
     ]
     print("Building GENCODE v48 STAR index", flush=True)
     with (temporary / "command.stdout.log").open("w") as log:
@@ -250,7 +250,8 @@ def main():
         "read_source": "NCBI SRA archives converted with fasterq-dump",
         "reference": "GENCODE human release 48 GRCh38 primary assembly",
         "reference_files": {name: {"source_md5": item[2], "bytes": item[1]} for name, item in REFERENCE.items()},
-        "index_options": {"sjdbOverhang": overhang, "genomeSAsparseD": 3, "genomeSAindexNbases": 12},
+        "index_options": {"sjdbOverhang": overhang, "genomeSAsparseD": 8, "genomeSAindexNbases": 12,
+                          "runThreadN": 2, "limitGenomeGenerateRAM": 12000000000},
         "mapping_options": {"quantMode": "GeneCounts", "outSAMtype": "None", "readFilesCommand": "zcat"},
         "run_accessions": [row["run_accession"] for row in rows],
         "reused_controls": {row["geo_accession"]: row["control_duplicate_of"] for row in rows if row["control_duplicate_of"]},

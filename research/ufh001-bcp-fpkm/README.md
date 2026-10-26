@@ -19,3 +19,5 @@ python research/ufh001-bcp-fpkm/reprocess_star_counts.py
 ```
 
 This raw-count workflow is specified but not yet executed. Neither a differential-expression model nor a cross-cell replication claim is justified by the processed FPKM audit.
+
+The [raw-count notebook](../../notebooks/terputer-ufh001-bcp-raw-counts.ipynb) is a prespecified, unexecuted PyDESeq2 0.5.4 analysis. It checks the processing receipt and library identities, reviews mapping and sample correlations, then fits one `~arm` model with separate 20 µM and 200 µM contrasts against the shared controls. Its dependency environment is pinned in [requirements-raw-counts.lock.txt](../../requirements-raw-counts.lock.txt). Both contrast tables must be interpreted with the reused controls and per-contrast FDR adjustment in view; neither is an independent replication of the other.

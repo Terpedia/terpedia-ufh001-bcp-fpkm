@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "generator": "terputer-report-generator-v2",
+  "specification_schema_version": 2,
+  "manifest": "research/ufh001-bcp-fpkm/report-spec.json",
+  "manifest_sha256": "ebb347d5836363fd73149ee700bd184fe626e5f46c3cb0c4bef4658be1b02aa9",
+  "notebook": "notebooks/terputer-ufh001-bcp-fpkm.ipynb",
+  "notebook_sha256": "74f363843bac5e6637515eeb4bfc1569762bd95ed293c49e2eab4a251a3a124b",
+  "executed_code_cells": 1,
+  "notebook_execution_receipt": "research/execution-receipts/terputer-ufh001-bcp-fpkm.json",
+  "notebook_execution_receipt_sha256": "424f3efbd33945090d7a4e6f87921a04721324fe4f5d1eafb7e61dc781d13a82",
+  "artifact_sha256": {
+    "research/ufh001-bcp-fpkm/results/analysis_summary.json": "f9bbc57eac3da3ed8a49b53c1ac7f5979d0f91692a045e87306c9dc8839dc7c0",
+    "research/ufh001-bcp-fpkm/results/descriptive_effects.tsv": "7eef7fe7c5f0b3bedd452308a6d250c553d7fe74a2cc09eb1731b291bff2d564",
+    "research/ufh001-bcp-fpkm/results/marker_effects.tsv": "1b87864cb1d77e4c712a936d1ca4ff9e181832f241e9c6d0a8d845f1a7414e8e",
+    "research/ufh001-bcp-fpkm/results/sample_correlations.tsv": "3c1807413304d0f482810be90abc894e473dc630a93daa91e19e05ed2865f94e",
+    "research/ufh001-bcp-fpkm/results/sample_qc.tsv": "11c9ecb179bdf8fdd1d62e2e4140712612cb0401c8e5eafba799761debaf353d"
+  },
+  "input_sha256": {
+    "research/ufh001-bcp-fpkm/analysis.py": "4c80ddc8e70345c9e70b6c9dc73366bd7259d322bcbfe9640f18a24c5a9bc3cc",
+    "research/ufh001-bcp-fpkm/data/GSE125511_FPKM_geneMatrix_NORMALIZED.txt.gz": "662960a32245e6b64b20879215e42d340ba19a5c6c16a0b79fbef0ef6c88d415",
+    "research/ufh001-bcp-fpkm/data/hgnc_complete_set.txt": "12363916be36f8f6f91879b0faade4eeaac973722de7136ec61329b77f2c2f91",
+    "research/ufh001-bcp-fpkm/hgnc_crosswalk.tsv": "d38e83b643c29cbb2ff7b20dc6aa8d57702f885ed8b8fcd3ae4af6d6369b998b",
+    "research/ufh001-bcp-fpkm/sample_manifest.tsv": "d2016d14b9534124fe2fd387a1b8e391b4b2660b3b27e06c2145778a6ef17b9b"
+  },
+  "external_data_inputs": [
+    {
+      "path": "research/ufh001-bcp-fpkm/data/GSE125511_FPKM_geneMatrix_NORMALIZED.txt.gz",
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE125nnn/GSE125511/suppl/GSE125511_FPKM_geneMatrix_NORMALIZED.txt.gz",
+      "sha256": "662960a32245e6b64b20879215e42d340ba19a5c6c16a0b79fbef0ef6c88d415"
+    },
+    {
+      "path": "research/ufh001-bcp-fpkm/data/hgnc_complete_set.txt",
+      "url": "https://storage.googleapis.com/public-download-files/hgnc/tsv/tsv/hgnc_complete_set.txt",
+      "sha256": "12363916be36f8f6f91879b0faade4eeaac973722de7136ec61329b77f2c2f91"
+    }
+  ],
+  "claim_count": 10,
+  "observed_claim_count": 5,
+  "report_sha256": "bb9ad236d27943a3bee17296c8abea91ba098a6f4fff8ed3798260ed87e4e7b9",
+  "ledger_sha256": "f20697209e91033a7a51f3b7624bf8341c2572f4bdc187a66b2aaebe8d996535",
+  "limits": "Checks source URL syntax, local artifact presence, notebook execution metadata, and provenance; version 2 specifications also bind a recorded run to the notebook, observed-claim artifact hashes, and any declared local input hashes. Does not verify that a notebook read every declared input, live URL reachability, biological replication, or claim truth."
+}

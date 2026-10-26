@@ -1,0 +1,4 @@
+__pycache__/
+.ipynb_checkpoints/
+.venv/
+research/ufh001-bcp-fpkm/data/

@@ -1,0 +1,7 @@
+# Methods and interpretation
+
+The [sample manifest](sample_manifest.tsv) maps the nine matrix columns to GEO sample accessions, dose arms, and the three controls reused from GSE123856. The [analysis](analysis.py) reads the checksum-pinned FPKM matrix, checks all cells for finite nonnegative values, and verifies a one-to-one approved HGNC Entrez-to-Ensembl crosswalk against a pinned HGNC source snapshot. Ambiguous mappings are excluded. It computes sample sums and detection counts, pairwise Pearson correlations over log1p(FPKM), and separate group-mean ratios for the 20 µM and 200 µM arms against the shared vehicle controls. Ratios are shown with 0.1 and 1.0 FPKM pseudocounts. A feature enters the twofold tally when mean FPKM is at least 1 in any arm.
+
+These are descriptive summaries of processed bulk expression. No statistical model, adjusted p-value, gene-set enrichment, cholesterol flux, receptor binding, or genetic target perturbation was run. Both dose contrasts share controls. The source paper's HMGCR intervention is reported as external evidence rather than a result of this notebook. A controlled cross-cell experiment would need matched exposures and genetic perturbations to identify context or target interactions.
+
+The [report specification](report-spec.json) labels every report claim as observed, source-reported, or proposed and points observed claims to executed notebook artifacts. The [generation receipt](generated/generation-receipt.json) binds source inputs, notebook, results, and report hashes.

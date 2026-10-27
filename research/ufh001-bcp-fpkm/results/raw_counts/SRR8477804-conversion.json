@@ -1,0 +1,14 @@
+{
+  "matrix_column": "CF-02-UFH001-DMSO-H-1_S2_0",
+  "geo_accession": "GSM3576244",
+  "run_accession": "SRR8477804",
+  "sra_md5": "61ef7c38d1aad4bac99d1a5186e29c16",
+  "control_duplicate_of": "GSM3514416",
+  "fastq_bytes": 1245015284,
+  "fastq_sha256": "694189a8f644750e6948eed212a3f2ffbaf4a9d01e3f460e685807617b38917c",
+  "read_count": 21116736,
+  "read_length_min": 35,
+  "read_length_max": 76,
+  "compression": "pigz -n -1 -p 4",
+  "compression_version": "pigz 2.8"
+}

@@ -22,6 +22,7 @@ from convert_sra_to_fastq import sha256_file
 
 RESULTS = PROJECT / "results" / "raw_counts"
 REFERENCE_DIR = DATA / "reference"
+STAR_BINARY = DATA / "tools" / "STAR-2.7.11b-patched"
 
 
 def require_input(path, size, md5):
@@ -55,7 +56,7 @@ def build_index(fasta, gtf, overhang):
     index.parent.mkdir(parents=True, exist_ok=True)
     temporary = Path(tempfile.mkdtemp(prefix="star-index-", dir=index.parent))
     command = [
-        "STAR", "--runMode", "genomeGenerate", "--runThreadN", "2",
+        str(STAR_BINARY), "--runMode", "genomeGenerate", "--runThreadN", "2",
         "--genomeDir", str(temporary), "--genomeFastaFiles", str(fasta),
         "--sjdbGTFfile", str(gtf), "--sjdbOverhang", str(overhang),
         "--genomeSAsparseD", "8", "--genomeSAindexNbases", "12",
@@ -120,8 +121,8 @@ def align(row, converted, index):
     if counts.is_file() and final_log.is_file():
         return counts, final_log
     command = [
-        "STAR", "--genomeDir", str(index), "--runThreadN", "8",
-        "--readFilesIn", str(fastq), "--readFilesCommand", "zcat",
+        str(STAR_BINARY), "--genomeDir", str(index), "--runThreadN", "8",
+        "--readFilesIn", str(fastq), "--readFilesCommand", "gunzip", "-c",
         "--quantMode", "GeneCounts", "--outSAMtype", "None",
         "--outFileNamePrefix", str(run_dir) + "/",
     ]
@@ -194,7 +195,9 @@ def compress_result(name):
 
 
 def main():
-    version = subprocess.check_output(["STAR", "--version"], text=True).strip()
+    if not STAR_BINARY.is_file():
+        raise ValueError(f"Build the patched STAR binary first: {STAR_BINARY}")
+    version = subprocess.check_output([str(STAR_BINARY), "--version"], text=True).strip()
     if version != "2.7.11b":
         raise ValueError(f"Expected STAR 2.7.11b; found {version}")
     rows, converted = manifest()
@@ -219,6 +222,8 @@ def main():
         })
         if any(value is None for value in qc[-1].values()):
             raise ValueError(f"STAR mapping QC is incomplete for {row['run_accession']}")
+        if int(qc[-1]["input_reads"].replace(",", "")) != converted[row["run_accession"]]["read_count"]:
+            raise ValueError(f"STAR input-read count differs from the FASTQ receipt for {row['run_accession']}")
     genes = set(sample_counts[0])
     if any(set(sample) != genes for sample in sample_counts[1:]):
         raise ValueError("STAR outputs have different gene sets")
@@ -243,6 +248,8 @@ def main():
     receipt = {
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "aligner": "STAR", "aligner_version": version,
+        "aligner_binary_sha256": sha256_file(STAR_BINARY),
+        "aligner_source_patch": "Initialize ParametersGenome::transform.outQuant=false (STAR issue 1953)",
         "pipeline_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
         "run_manifest_sha256": sha256_file(PROJECT / "sra_run_manifest.tsv"),
         "sample_manifest_sha256": sha256_file(PROJECT / "sample_manifest.tsv"),
@@ -252,7 +259,7 @@ def main():
         "reference_files": {name: {"source_md5": item[2], "bytes": item[1]} for name, item in REFERENCE.items()},
         "index_options": {"sjdbOverhang": overhang, "genomeSAsparseD": 8, "genomeSAindexNbases": 12,
                           "runThreadN": 2, "limitGenomeGenerateRAM": 12000000000},
-        "mapping_options": {"quantMode": "GeneCounts", "outSAMtype": "None", "readFilesCommand": "zcat"},
+        "mapping_options": {"quantMode": "GeneCounts", "outSAMtype": "None", "readFilesCommand": "gunzip -c"},
         "run_accessions": [row["run_accession"] for row in rows],
         "reused_controls": {row["geo_accession"]: row["control_duplicate_of"] for row in rows if row["control_duplicate_of"]},
         "gene_count_column": "STAR ReadsPerGene.out.tab unstranded",

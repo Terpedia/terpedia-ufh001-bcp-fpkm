@@ -1,0 +1,14 @@
+{
+  "matrix_column": "CF-03-UFH001-20uMCARYOPHYLLENE-H-1_S3_0",
+  "geo_accession": "GSM3576245",
+  "run_accession": "SRR8477805",
+  "sra_md5": "da3799ec19cdd154181be7c3e4c3f43b",
+  "control_duplicate_of": "",
+  "fastq_bytes": 1631135383,
+  "fastq_sha256": "6d45ce0eef46580fd8905cc75da222ac656e72a7109dfb744489f752c73ced1b",
+  "read_count": 27632910,
+  "read_length_min": 35,
+  "read_length_max": 76,
+  "compression": "pigz -n -1 -p 4",
+  "compression_version": "pigz 2.8"
+}

@@ -8,6 +8,8 @@ The [ENA raw-run manifest](research/ufh001-bcp-fpkm/raw_run_manifest.tsv) maps a
 
 An [unexecuted raw-count notebook](notebooks/terputer-ufh001-bcp-raw-counts.ipynb) now specifies QC and separate PyDESeq2 contrasts for the two BCP doses against their shared DMSO controls. Its [dependency lock](requirements-raw-counts.lock.txt) describes the analysis environment. The existing white paper still reports only the deposited FPKM audit; the raw-count notebook is a method draft until the reads, mapping QC, model outputs, and execution receipt exist.
 
+The [cross-context comparison notebook](notebooks/terputer-bcp-cross-context.ipynb) is also unexecuted until the UFH-001 raw-count results exist. It pins the public HepG2 result table to a commit and SHA-256, joins versioned GENCODE gene IDs, and will save per-gene effect tables plus a directional summary for each UFH-001 dose. Its comparisons are descriptive because cell type, oxygen, dose, time, and vehicle differ; both UFH-001 dose contrasts also share controls.
+
 At 200 µM, HMGCR and several cholesterol-associated transcript means are higher than vehicle. This is a processed-matrix observation that agrees in direction with a [source article](https://pmc.ncbi.nlm.nih.gov/articles/PMC8561761/); it does not establish increased cholesterol flux or direct binding of β-caryophyllene to HMGCR. The [HepG2 audit](https://github.com/Terpedia/terpedia-hepg2-bcp-rsem) differs in cell type, oxygen, dose, time, vehicle, and quantification. Its PGF pattern therefore cannot be called biologically replicated here.
 
 ## Reproduce

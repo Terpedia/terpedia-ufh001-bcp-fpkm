@@ -24,8 +24,8 @@ def main() -> None:
     cell_timeout = int(sys.argv[3])
     if workspace not in notebook_path.parents or notebook_path.parent != workspace / "notebooks":
         raise ValueError("Notebook must be directly under notebooks/")
-    if notebook_path.suffix != ".ipynb" or not 1 <= cell_timeout <= 600:
-        raise ValueError("Expected an .ipynb notebook and a 1–600 second cell timeout")
+    if notebook_path.suffix != ".ipynb" or not 1 <= cell_timeout <= 7200:
+        raise ValueError("Expected an .ipynb notebook and a 1–7200 second cell timeout")
 
     artifact_names = json.loads(sys.argv[4]) if len(sys.argv) >= 5 else []
     if not isinstance(artifact_names, list) or len(artifact_names) > 50 or any(not isinstance(name, str) for name in artifact_names) or len(set(artifact_names)) != len(artifact_names):

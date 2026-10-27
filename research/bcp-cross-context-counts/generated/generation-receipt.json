@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "generator": "terputer-report-generator-v2",
+  "specification_schema_version": 2,
+  "manifest": "research/ufh001-bcp-fpkm/cross-context-report-spec.json",
+  "manifest_sha256": "38aaa3666f11779fb11d9075fdd06e5a8cc59ee13c9f2fa64353df976f8915bc",
+  "notebook": "notebooks/terputer-bcp-cross-context.ipynb",
+  "notebook_sha256": "07c515fb2761cc7b02b5336bd69f2f4386a6d43c78cd155add020a0aeb9fb149",
+  "executed_code_cells": 2,
+  "notebook_execution_receipt": "research/execution-receipts/terputer-bcp-cross-context.json",
+  "notebook_execution_receipt_sha256": "a9e75b9b51385d84178c85492d6738eefec80a62e8e1b6a3324f93d3b7e75619",
+  "artifact_sha256": {
+    "research/ufh001-bcp-fpkm/results/raw_counts/cross_context/comparison_summary.json": "50f65880317509a46168460e8a2c05d1aed24763defac2c23a95342d0059a7f3",
+    "research/ufh001-bcp-fpkm/results/raw_counts/cross_context/comparison_summary.tsv": "05af429d64c6eaf06deb72f8de94556161b80d1541696b569f934db2087bf87e",
+    "research/ufh001-bcp-fpkm/results/raw_counts/cross_context/gene_effects_hepg2_vs_ufh_200uM.tsv": "834e31173b6de64ef38898b92b2f374b2efcba9b6dd1239a1dea1ac19220d80d",
+    "research/ufh001-bcp-fpkm/results/raw_counts/cross_context/gene_effects_hepg2_vs_ufh_20uM.tsv": "2846ffa2347a8e50c9c03445b4bf87d3af115207efb0b26dfc663a5ccdacc21e"
+  },
+  "input_sha256": {
+    "research/execution-receipts/terputer-ufh001-bcp-raw-counts.json": "897a8435a41068f9731e8495368905cf83110803061997dfad9344be1f183d3c",
+    "research/ufh001-bcp-fpkm/results/raw_counts/deseq2_bcp20_vs_vehicle.tsv": "91b24e73116d0b659ebf5c360c65b044a2be9a9867ad63877ee34298f6429799",
+    "research/ufh001-bcp-fpkm/results/raw_counts/deseq2_bcp200_vs_vehicle.tsv": "50c2f3d2e71a5c6ea1a9ab7b000959e2e39001ffa299f6fbbcad5e6eee8c6757"
+  },
+  "claim_count": 4,
+  "observed_claim_count": 2,
+  "report_sha256": "3182d7a816def489830c4b8b43de216b75faabd7b7d5def0cd6b3b2a2cb84007",
+  "ledger_sha256": "47069e74a5adbd6e8990347fd574e13015cb2be9fce97da86dae962e44662ee8",
+  "limits": "Checks source URL syntax, local artifact presence, notebook execution metadata, and provenance; version 2 specifications also bind a recorded run to the notebook, observed-claim artifact hashes, and any declared local input hashes. Does not verify that a notebook read every declared input, live URL reachability, biological replication, or claim truth."
+}

@@ -1,0 +1,50 @@
+{
+  "study": "GSE125511",
+  "contrasts": [
+    "20 uM beta-caryophyllene vs shared DMSO controls",
+    "200 uM beta-caryophyllene vs shared DMSO controls"
+  ],
+  "model": "PyDESeq2 0.5.4 negative binomial ~arm, Wald tests, BH FDR within each contrast",
+  "filter": "at least 10 raw unstranded counts in at least 3 of 9 libraries",
+  "libraries_per_arm": {
+    "vehicle": 3,
+    "bcp20": 3,
+    "bcp200": 3
+  },
+  "reused_controls": {
+    "GSM3576244": "GSM3514416",
+    "GSM3576247": "GSM3514418",
+    "GSM3576250": "GSM3514420"
+  },
+  "genes_in_count_matrix": 78894,
+  "tested_genes": {
+    "bcp20": 14312,
+    "bcp200": 14312
+  },
+  "fdr_below_0_05": {
+    "bcp20": 0,
+    "bcp200": 139
+  },
+  "fdr_below_0_05_abs_log2fc_at_least_1": {
+    "bcp20": 0,
+    "bcp200": 40
+  },
+  "prespecified_gene_symbols": [
+    "HMGCR",
+    "HMGCS1",
+    "SQLE",
+    "LDLR",
+    "SREBF2",
+    "PGF",
+    "NR4A1",
+    "CSF1R",
+    "ARTN",
+    "CACNA1E"
+  ],
+  "limitations": [
+    "Three labeled libraries per arm",
+    "Both contrasts reuse the same DMSO controls from GSE123856",
+    "Only one hypoxic condition and time point",
+    "No target engagement, pathway activity, or cross-study replication established"
+  ]
+}

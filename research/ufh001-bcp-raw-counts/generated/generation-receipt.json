@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "generator": "terputer-report-generator-v2",
+  "specification_schema_version": 2,
+  "manifest": "research/ufh001-bcp-fpkm/raw-count-report-spec.json",
+  "manifest_sha256": "c45a7acc84c6e6a7b01b84c90fa54b23f752186ac3b6725da1c9f16632f64e74",
+  "notebook": "notebooks/terputer-ufh001-bcp-raw-counts.ipynb",
+  "notebook_sha256": "5e904ebc762d3e7eb95cc17115864ab3f3850e3af91b002391fe5201f7df9652",
+  "executed_code_cells": 4,
+  "notebook_execution_receipt": "research/execution-receipts/terputer-ufh001-bcp-raw-counts.json",
+  "notebook_execution_receipt_sha256": "897a8435a41068f9731e8495368905cf83110803061997dfad9344be1f183d3c",
+  "artifact_sha256": {
+    "research/ufh001-bcp-fpkm/results/raw_counts/analysis_sample_qc.tsv": "56e410dc517bc6847a968d8094972dc5a4316bc45f50eca9b3bb970d5eef0026",
+    "research/ufh001-bcp-fpkm/results/raw_counts/analysis_summary.json": "347f8453bb3c0a59a866644518c7ca21d3f08c6a37bd46cb170b49f862184d4e",
+    "research/ufh001-bcp-fpkm/results/raw_counts/deseq2_bcp20_vs_vehicle.tsv": "91b24e73116d0b659ebf5c360c65b044a2be9a9867ad63877ee34298f6429799",
+    "research/ufh001-bcp-fpkm/results/raw_counts/deseq2_bcp200_vs_vehicle.tsv": "50c2f3d2e71a5c6ea1a9ab7b000959e2e39001ffa299f6fbbcad5e6eee8c6757",
+    "research/ufh001-bcp-fpkm/results/raw_counts/prespecified_genes.tsv": "226d2858550f0f96dd7be4a3312fffb9fce80e80f61df0c355348b23c1753748"
+  },
+  "input_sha256": {
+    "research/ufh001-bcp-fpkm/reprocess_star_counts.py": "e7c70276aaa1b2e2616f209f300c7e1f966fa4939dbf978b9bd5e4b952c74446",
+    "research/ufh001-bcp-fpkm/results/raw_counts/conversion_receipt.json": "2d23ff98f758bf8af89508acbe4836ea409d347b0a49ce870ee725b7565f7fdd",
+    "research/ufh001-bcp-fpkm/results/raw_counts/gene_annotation.tsv.gz": "692523a71ccd982975d3c6e723171a9671139fe57bfb95522b35d9031f56b76d",
+    "research/ufh001-bcp-fpkm/results/raw_counts/gene_counts_unstranded.tsv.gz": "b43a3ffeb68a5cf0ce67fba8a1801876c3f9e51ab716110f71b59b32a490828e",
+    "research/ufh001-bcp-fpkm/results/raw_counts/processing_receipt.json": "e6821b6e98a066cec4465cbda18641f18fca6325c21a04267c6159f3cf282dcc",
+    "research/ufh001-bcp-fpkm/results/raw_counts/star_mapping_qc.tsv": "160e83420e741b3ee3938719a3e5cd4d2ae623816103825aef568f1643c03d9b",
+    "research/ufh001-bcp-fpkm/sample_manifest.tsv": "d2016d14b9534124fe2fd387a1b8e391b4b2660b3b27e06c2145778a6ef17b9b",
+    "research/ufh001-bcp-fpkm/sra_run_manifest.tsv": "9692a902178ba23475f132d89712a31a9e9db229893419bc151bc7d890cf69f6"
+  },
+  "claim_count": 7,
+  "observed_claim_count": 4,
+  "report_sha256": "3b1040472ac983446bc5c556ad3dd648eae478499e10208ebba90d1fe7b27f57",
+  "ledger_sha256": "3e6ab2c38da0ff8214c01b983476b851e853be463f9df2a388978834db8cceb2",
+  "limits": "Checks source URL syntax, local artifact presence, notebook execution metadata, and provenance; version 2 specifications also bind a recorded run to the notebook, observed-claim artifact hashes, and any declared local input hashes. Does not verify that a notebook read every declared input, live URL reachability, biological replication, or claim truth."
+}

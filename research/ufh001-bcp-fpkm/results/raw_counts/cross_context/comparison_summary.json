@@ -1,0 +1,33 @@
+{
+  "hepg2_commit": "76bbc4748d6d0590bea4fa7fb3a3e32c80c74d33",
+  "hepg2_result_sha256": "af2559428959ff5b366bf3899d37da1cd1d87d9ddc8f0eb33a19077d685585ef",
+  "comparisons": [
+    {
+      "dose": "20uM",
+      "common_tested_genes": 12453,
+      "hepg2_fdr05_in_common_universe": 1343,
+      "ufh_fdr05_in_common_universe": 0,
+      "both_fdr05": 0,
+      "both_fdr05_same_direction": 0,
+      "both_fdr05_opposite_direction": 0,
+      "all_common_spearman_log2fc": -0.015548122237098871,
+      "shared_ufh_controls": true
+    },
+    {
+      "dose": "200uM",
+      "common_tested_genes": 12453,
+      "hepg2_fdr05_in_common_universe": 1343,
+      "ufh_fdr05_in_common_universe": 121,
+      "both_fdr05": 31,
+      "both_fdr05_same_direction": 12,
+      "both_fdr05_opposite_direction": 19,
+      "all_common_spearman_log2fc": -0.049214449127873594,
+      "shared_ufh_controls": true
+    }
+  ],
+  "limitations": [
+    "Different cell types, oxygen, dose, time, and vehicles",
+    "UFH-001 dose contrasts share the same three controls",
+    "Descriptive cross-study comparison; no pooled inference or biological replication established"
+  ]
+}

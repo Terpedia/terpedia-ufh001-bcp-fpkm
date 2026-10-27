@@ -1,0 +1,3 @@
+dose	common_tested_genes	hepg2_fdr05_in_common_universe	ufh_fdr05_in_common_universe	both_fdr05	both_fdr05_same_direction	both_fdr05_opposite_direction	all_common_spearman_log2fc	shared_ufh_controls
+20uM	12453	1343	0	0	0	0	-0.015548122237098871	True
+200uM	12453	1343	121	31	12	19	-0.049214449127873594	True

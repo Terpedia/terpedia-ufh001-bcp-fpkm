@@ -1,0 +1,155 @@
+{
+  "schema_version": 2,
+  "slug": "ufh001-bcp-raw-counts",
+  "title": "β-Caryophyllene in hypoxic UFH-001: raw-read reprocessing and two count-based dose contrasts",
+  "question": "Which metabolic and signaling responses to terpene exposure are reproducible, and which depend on cellular context or a specific target?",
+  "notebook": "notebooks/terputer-ufh001-bcp-raw-counts.ipynb",
+  "execution_receipt": "research/execution-receipts/terputer-ufh001-bcp-raw-counts.json",
+  "sources": [
+    {
+      "id": "geo",
+      "title": "GEO GSE125511 series and samples",
+      "url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE125511"
+    },
+    {
+      "id": "controls",
+      "title": "GEO GSE123856 reused control source",
+      "url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE123856"
+    },
+    {
+      "id": "gencode",
+      "title": "GENCODE human release 48",
+      "url": "https://www.gencodegenes.org/human/release_48.html"
+    },
+    {
+      "id": "paper",
+      "title": "Original UFH-001 β-caryophyllene study",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8561761/"
+    },
+    {
+      "id": "hepg2",
+      "title": "HepG2 raw-count white paper",
+      "url": "https://github.com/Terpedia/terpedia-hepg2-bcp-rsem/blob/f0e0a56ae1b510fa622a11e218fe6b3b8d2f8d54/research/hepg2-bcp-raw-counts/generated/white-paper.md"
+    }
+  ],
+  "claims": [
+    {
+      "id": "R01",
+      "class": "source-reported",
+      "text": "GSE125511 labels three UFH-001 DMSO controls, three 20 µM β-caryophyllene libraries, and three 200 µM β-caryophyllene libraries after 16 hours at 1% oxygen. The three controls are reused from GSE123856.",
+      "sources": [
+        "geo",
+        "controls"
+      ],
+      "limitation": "The reused controls are one shared comparison group, not an independent cohort; no normoxic treated arm exists."
+    },
+    {
+      "id": "R02",
+      "class": "observed",
+      "text": "Nine checksum-verified SRA archives were converted to FASTQ and aligned to GENCODE v48 GRCh38. Per-library unique mapping ranges from 87.59% to 89.30%; the unstranded count matrix contains 78,894 genes.",
+      "sources": [
+        "geo",
+        "gencode"
+      ],
+      "limitation": "Mapping quality does not establish independent biological replication or rule out batch effects.",
+      "artifacts": [
+        "research/ufh001-bcp-fpkm/results/raw_counts/analysis_sample_qc.tsv",
+        "research/ufh001-bcp-fpkm/results/raw_counts/analysis_summary.json"
+      ]
+    },
+    {
+      "id": "R03",
+      "class": "observed",
+      "text": "The prespecified three-arm PyDESeq2 count model tests 14,312 genes at 20 µM and 14,312 at 200 µM against the same three DMSO controls. BH-adjusted p < 0.05 occurs for 0 and 139 genes, respectively; 0 and 40 also have absolute log2 fold change at least one.",
+      "sources": [
+        "geo"
+      ],
+      "limitation": "The two dose contrasts share controls. These are within-study model estimates, not two independent replications or a pathway test.",
+      "artifacts": [
+        "research/ufh001-bcp-fpkm/results/raw_counts/analysis_summary.json",
+        "research/ufh001-bcp-fpkm/results/raw_counts/deseq2_bcp20_vs_vehicle.tsv",
+        "research/ufh001-bcp-fpkm/results/raw_counts/deseq2_bcp200_vs_vehicle.tsv"
+      ]
+    },
+    {
+      "id": "R04",
+      "class": "observed",
+      "text": "Prespecified cholesterol marker HMGCR: HMGCR log2 fold change -0.119, BH-adjusted p 1 at 20 µM; HMGCR log2 fold change +1.543, BH-adjusted p 1.74e-07 at 200 µM.",
+      "sources": [
+        "geo",
+        "paper"
+      ],
+      "limitation": "HMGCR transcript abundance is not cholesterol synthesis flux, enzyme activity, or direct β-caryophyllene binding.",
+      "artifacts": [
+        "research/ufh001-bcp-fpkm/results/raw_counts/prespecified_genes.tsv"
+      ]
+    },
+    {
+      "id": "R05",
+      "class": "observed",
+      "text": "Prespecified signaling marker PGF: PGF log2 fold change -0.905, BH-adjusted p 1 at 20 µM; PGF log2 fold change -0.525, BH-adjusted p unavailable at 200 µM.",
+      "sources": [
+        "geo",
+        "hepg2"
+      ],
+      "limitation": "Dose, time, oxygen, vehicle, and cell identity differ from HepG2; these estimates alone cannot isolate a cell-context interaction.",
+      "artifacts": [
+        "research/ufh001-bcp-fpkm/results/raw_counts/prespecified_genes.tsv"
+      ]
+    },
+    {
+      "id": "R06",
+      "class": "source-reported",
+      "text": "The source article reports a cholesterol-biosynthesis response and altered β-caryophyllene sensitivity after HMGCR inhibition.",
+      "sources": [
+        "paper"
+      ],
+      "limitation": "This count-model notebook does not reproduce the intervention experiment or establish direct ligand binding."
+    },
+    {
+      "id": "R07",
+      "class": "proposed",
+      "text": "Follow the separately executed HepG2–UFH-001 cross-context comparison with a matched factorial experiment using shared vehicle, oxygen, dose, time, viability controls, biological replicates, and HMGCR or PGF perturbations.",
+      "sources": [
+        "geo",
+        "hepg2",
+        "paper"
+      ],
+      "limitation": "The completed cross-study comparison is descriptive while experimental conditions differ; a target-specific interaction requires direct genetic or biochemical evidence."
+    }
+  ],
+  "abstract": [
+    "R01",
+    "R02",
+    "R03"
+  ],
+  "sections": {
+    "background": [
+      "R01",
+      "R06"
+    ],
+    "methods": [
+      "R02",
+      "R03"
+    ],
+    "results": [
+      "R03",
+      "R04",
+      "R05"
+    ],
+    "interpretation": [
+      "R04",
+      "R05",
+      "R06"
+    ],
+    "limitations": [
+      "R01",
+      "R03",
+      "R04",
+      "R05"
+    ],
+    "next_steps": [
+      "R07"
+    ]
+  }
+}

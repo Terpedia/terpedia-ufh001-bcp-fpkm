@@ -1,0 +1,102 @@
+{
+  "schema_version": 2,
+  "slug": "bcp-cross-context-counts",
+  "title": "β-Caryophyllene transcriptomics across HepG2 and hypoxic UFH-001: a descriptive count-model comparison",
+  "question": "Which metabolic and signaling responses to terpene exposure are reproducible, and which depend on cellular context or a specific target?",
+  "notebook": "notebooks/terputer-bcp-cross-context.ipynb",
+  "execution_receipt": "research/execution-receipts/terputer-bcp-cross-context.json",
+  "sources": [
+    {
+      "id": "ufh",
+      "title": "GEO GSE125511",
+      "url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE125511"
+    },
+    {
+      "id": "hepg2",
+      "title": "HepG2 GSE276099 raw-count report",
+      "url": "https://github.com/Terpedia/terpedia-hepg2-bcp-rsem/blob/f0e0a56ae1b510fa622a11e218fe6b3b8d2f8d54/research/hepg2-bcp-raw-counts/generated/white-paper.md"
+    }
+  ],
+  "claims": [
+    {
+      "id": "C01",
+      "class": "source-reported",
+      "text": "The UFH-001 source has one shared three-library DMSO control group and 20 µM and 200 µM β-caryophyllene arms under hypoxia; the independent HepG2 study used different culture and exposure conditions.",
+      "sources": [
+        "ufh",
+        "hepg2"
+      ],
+      "limitation": "Cell identity, oxygen, dose, time, and vehicle are confounded across studies."
+    },
+    {
+      "id": "C02",
+      "class": "observed",
+      "text": "The receipt-pinned count-model comparison joins 12,453 genes tested in both studies by versioned gene ID. The HepG2 contrast has 1,343 BH-FDR < 0.05 genes in this common universe; UFH-001 has 0 at 20 µM and 121 at 200 µM.",
+      "sources": [
+        "ufh",
+        "hepg2"
+      ],
+      "limitation": "The contrast significance counts depend on within-study sample size, dispersion, and exposure; their difference is not a formal interaction test.",
+      "artifacts": [
+        "research/ufh001-bcp-fpkm/results/raw_counts/cross_context/gene_effects_hepg2_vs_ufh_20uM.tsv",
+        "research/ufh001-bcp-fpkm/results/raw_counts/cross_context/gene_effects_hepg2_vs_ufh_200uM.tsv",
+        "research/ufh001-bcp-fpkm/results/raw_counts/cross_context/comparison_summary.tsv",
+        "research/ufh001-bcp-fpkm/results/raw_counts/cross_context/comparison_summary.json"
+      ]
+    },
+    {
+      "id": "C03",
+      "class": "observed",
+      "text": "At 200 µM in UFH-001, 31 genes meet BH-FDR < 0.05 in both studies: 12 have matching fold-change signs and 19 have opposite signs. Across all common tested genes, Spearman fold-change correlations are -0.016 at 20 µM and -0.049 at 200 µM.",
+      "sources": [
+        "ufh",
+        "hepg2"
+      ],
+      "limitation": "These descriptive comparisons do not establish reproducibility of a pathway, a cellular-context interaction, or target specificity.",
+      "artifacts": [
+        "research/ufh001-bcp-fpkm/results/raw_counts/cross_context/gene_effects_hepg2_vs_ufh_20uM.tsv",
+        "research/ufh001-bcp-fpkm/results/raw_counts/cross_context/gene_effects_hepg2_vs_ufh_200uM.tsv",
+        "research/ufh001-bcp-fpkm/results/raw_counts/cross_context/comparison_summary.tsv",
+        "research/ufh001-bcp-fpkm/results/raw_counts/cross_context/comparison_summary.json"
+      ]
+    },
+    {
+      "id": "C04",
+      "class": "proposed",
+      "text": "Run a matched factorial study in both cell lines with shared vehicle, oxygen, exposure time, dose and viability controls, biological replicates, and HMGCR or PGF perturbations; prespecify pathway and interaction tests.",
+      "sources": [
+        "ufh",
+        "hepg2"
+      ],
+      "limitation": "Target attribution also needs genetic rescue or orthogonal binding and functional evidence."
+    }
+  ],
+  "abstract": [
+    "C01",
+    "C02",
+    "C03"
+  ],
+  "sections": {
+    "background": [
+      "C01"
+    ],
+    "methods": [
+      "C02"
+    ],
+    "results": [
+      "C02",
+      "C03"
+    ],
+    "interpretation": [
+      "C03"
+    ],
+    "limitations": [
+      "C01",
+      "C02",
+      "C03"
+    ],
+    "next_steps": [
+      "C04"
+    ]
+  }
+}

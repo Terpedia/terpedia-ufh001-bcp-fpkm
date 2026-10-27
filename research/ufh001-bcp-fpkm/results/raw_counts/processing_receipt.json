@@ -1,0 +1,59 @@
+{
+  "generated_at_utc": "2026-10-27T09:03:20.232966+00:00",
+  "aligner": "STAR",
+  "aligner_version": "2.7.11b",
+  "aligner_binary_sha256": "f0c085c6762182fc10e457a7d3b99c06d1497a2ea18f8e5db6f647364c2d192a",
+  "aligner_source_patch": "Initialize ParametersGenome::transform.outQuant=false (STAR issue 1953)",
+  "pipeline_sha256": "e7c70276aaa1b2e2616f209f300c7e1f966fa4939dbf978b9bd5e4b952c74446",
+  "run_manifest_sha256": "9692a902178ba23475f132d89712a31a9e9db229893419bc151bc7d890cf69f6",
+  "sample_manifest_sha256": "d2016d14b9534124fe2fd387a1b8e391b4b2660b3b27e06c2145778a6ef17b9b",
+  "conversion_receipt_sha256": "2d23ff98f758bf8af89508acbe4836ea409d347b0a49ce870ee725b7565f7fdd",
+  "read_source": "NCBI SRA archives converted with fasterq-dump",
+  "reference": "GENCODE human release 48 GRCh38 primary assembly",
+  "reference_files": {
+    "GRCh38.primary_assembly.genome.fa.gz": {
+      "source_md5": "42e38e8dd5027dd2ae8aeb8f3a990d07",
+      "bytes": 845635028
+    },
+    "gencode.v48.primary_assembly.annotation.gtf.gz": {
+      "source_md5": "1b68ecb47fd4cc3946819fec58a59d8f",
+      "bytes": 59094311
+    }
+  },
+  "index_options": {
+    "sjdbOverhang": 75,
+    "genomeSAsparseD": 8,
+    "genomeSAindexNbases": 12,
+    "runThreadN": 2,
+    "limitGenomeGenerateRAM": 12000000000
+  },
+  "mapping_options": {
+    "quantMode": "GeneCounts",
+    "outSAMtype": "None",
+    "readFilesCommand": "gunzip -c"
+  },
+  "run_accessions": [
+    "SRR8477804",
+    "SRR8477805",
+    "SRR8477806",
+    "SRR8477807",
+    "SRR8477808",
+    "SRR8477809",
+    "SRR8477810",
+    "SRR8477811",
+    "SRR8477812"
+  ],
+  "reused_controls": {
+    "GSM3576244": "GSM3514416",
+    "GSM3576247": "GSM3514418",
+    "GSM3576250": "GSM3514420"
+  },
+  "gene_count_column": "STAR ReadsPerGene.out.tab unstranded",
+  "gene_count_rows": 78894,
+  "output_sha256": {
+    "gene_counts_unstranded.tsv.gz": "b43a3ffeb68a5cf0ce67fba8a1801876c3f9e51ab716110f71b59b32a490828e",
+    "star_mapping_qc.tsv": "160e83420e741b3ee3938719a3e5cd4d2ae623816103825aef568f1643c03d9b",
+    "gene_annotation.tsv.gz": "692523a71ccd982975d3c6e723171a9671139fe57bfb95522b35d9031f56b76d"
+  },
+  "limitations": "NCBI SRA and GENCODE MD5 checks establish downloaded-file identity but not biological replicate independence, dose accuracy, reference annotation correctness, or gene-level significance. The three DMSO controls are reused from GSE123856 and both BCP dose contrasts share them."
+}

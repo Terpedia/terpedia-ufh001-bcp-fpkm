@@ -15,8 +15,11 @@ The [NCBI SRA manifest](sra_run_manifest.tsv) records the same nine runs as norm
 
 ```sh
 python research/ufh001-bcp-fpkm/fetch_reference.py
+python research/ufh001-bcp-fpkm/build_star_patched.py
 python research/ufh001-bcp-fpkm/reprocess_star_counts.py
 ```
+
+The STAR build pins the 2.7.11b source archive by SHA256 and initializes `transform.outQuant` before compilation. This addresses the [upstream `/geneInfo.tab` GeneCounts bug](https://github.com/alexdobin/STAR/issues/1953) observed on Apple Silicon. The processing receipt records the patched binary SHA256. On macOS, the build requires Homebrew GCC 15; on Linux it uses GCC and make.
 
 This raw-count workflow is specified but not yet executed. Neither a differential-expression model nor a cross-cell replication claim is justified by the processed FPKM audit.
 
